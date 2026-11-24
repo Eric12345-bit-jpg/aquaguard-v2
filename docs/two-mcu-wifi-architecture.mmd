@@ -1,0 +1,14 @@
+flowchart LR
+  T[Source water tank] --> U[HC-SR04-compatible ultrasonic\nESP32 GPIO26/27]
+  T --> FI[Inlet flow sensor\nESP32 GPIO25]
+  FI --> E[ESP32 main controller\nLCD I2C GPIO21/22\nBuzzer GPIO14\nSolenoid relay GPIO23]
+  TT[Test tube / monitored section] --> FO[Outlet flow sensor 2\nESP8266 D5 / GPIO14]
+  FO --> N[ESP8266 Wi-Fi station]
+  N -. HTTP JSON + sequence .-> AP[ESP32 private Wi-Fi AP\n192.168.4.1]
+  AP --> E
+  E --> W[Internet Wi-Fi station]
+  W --> V[Vercel API\n/api/esp32/readings]
+  V --> S[(Supabase)]
+  V --> D[Live dashboard]
+  V --> G[Telegram alerts]
+  E --> A[Solenoid + buzzer fail-safe]

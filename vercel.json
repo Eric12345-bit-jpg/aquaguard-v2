@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
+  "functions": { "api/**/*.js": { "maxDuration": 15 } },
+  "crons": [
+    { "path": "/api/cron/mark-offline", "schedule": "* * * * *" }
+  ],
+  "rewrites": [
+    { "source": "/live-monitoring", "destination": "/index.html" },
+    { "source": "/devices", "destination": "/index.html" },
+    { "source": "/alerts", "destination": "/index.html" },
+    { "source": "/settings", "destination": "/index.html" }
+  ]
+}
